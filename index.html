@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <base target="_top">
+  <meta charset="utf-8">
+  <style>
+  :root {
+    --bg: #f5f3ef; --card: #ffffff; --txt: #1d2023; --sub: #6a6f74; --line: #e7e2d9;
+    --acc: #2c4a5a; --acc2: #e8eef1; --ok: #2e7d4f; --warn: #a86400; --err: #b3261e;
+    --r: 14px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg); color: var(--txt);
+    font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--acc); }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 16px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; margin: 14px 0; }
+  h1 { font-size: 1.5rem; line-height: 1.25; margin: .25em 0; letter-spacing: -.01em; }
+  h2 { font-size: 1.02rem; margin: 0 0 .7em; }
+  .sub { color: var(--sub); font-size: .93rem; }
+  .tag { display: inline-block; background: var(--acc2); color: var(--acc); border-radius: 999px; padding: 3px 11px; font-size: .78rem; font-weight: 600; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; font-size: .87rem; background: #fff; }
+  .btn {
+    appearance: none; border: 0; border-radius: 10px; background: var(--acc); color: #fff; font: inherit; font-weight: 600;
+    padding: 11px 16px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  .btn.sec { background: var(--acc2); color: var(--acc); }
+  .btn.peq { padding: 7px 11px; font-size: .85rem; border-radius: 8px; }
+  .btn:disabled { opacity: .5; cursor: default; }
+  input[type=text], input[type=search], select {
+    font: inherit; padding: 11px 12px; border: 1px solid var(--line); border-radius: 10px; background: #fff; width: 100%; color: var(--txt);
+  }
+  input:focus, select:focus { outline: 2px solid var(--acc); outline-offset: -1px; }
+  .vacio { text-align: center; color: var(--sub); padding: 40px 0; }
+</style>  <style>
+    header { padding: 22px 0 6px; }
+    .filtros { display: grid; grid-template-columns: 1fr; gap: 8px; }
+    @media (min-width: 720px) { .filtros { grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr; } }
+    .grilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(255px, 1fr)); gap: 14px; margin: 16px 0 32px; }
+    .item { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: transform .15s, box-shadow .15s; }
+    .item:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,.07); }
+    .thumb { aspect-ratio: 4 / 3; overflow: hidden; background: #ddd; }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .thumb.recorte img { transform: scale(1.2); }
+    .cuerpo { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 4px; }
+    .t { font-weight: 600; line-height: 1.3; }
+    .p { font-weight: 700; font-size: 1.1rem; margin-top: 4px; }
+    .mini { font-size: .85rem; color: var(--sub); }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Propiedades</h1>
+    <div class="sub" id="total"></div>
+  </header>
+  <div class="filtros">
+    <input type="search" id="q" placeholder="Buscar por barrio, tipo, palabra…">
+    <select id="op"><option value="">Operación</option></select>
+    <select id="tipo"><option value="">Tipo</option></select>
+    <select id="barrio"><option value="">Barrio</option></select>
+    <select id="dorm">
+      <option value="0">Dormitorios</option><option value="1">1 o más</option><option value="2">2 o más</option>
+      <option value="3">3 o más</option><option value="4">4 o más</option>
+    </select>
+    <select id="orden">
+      <option value="rec">Más recientes</option><option value="pa">Menor precio</option><option value="pd">Mayor precio</option>
+    </select>
+  </div>
+  <div class="grilla" id="grilla"></div>
+</div>
+
+<script>
+const D = {"fichas":[{"slug":"casa-venta-canning-ezeiza-gba-sur-argentina-849932","enlace":"https://fichaprop.github.io/849932/","titulo":"Casa en Venta en Canning, Ezeiza, GBA Sur, Argentina","tipo":"Casa","operacion":"Venta","moneda":"USD","precio":1950000,"barrio":"Canning, Ezeiza, GBA Sur, Argentina","zona":"Canning, Ezeiza, GBA Sur, Argentina, La Providencia Resort &amp; Country Club","ambientes":6,"dormitorios":5,"banos":6,"supTotal":"561 m²","portadaId":"11ZypTF_RBhO4rjdm_W_oyNFHPb0ufKuC","recorte":false,"actualizado":"2026-10-09T19:57:50.032Z"},{"slug":"casa-venta-c0e426","enlace":"https://fichaprop.github.io/c0e426/","titulo":"Casa en Venta","tipo":"Casa","operacion":"Venta","moneda":"USD","precio":360000,"barrio":"","zona":"","ambientes":4,"dormitorios":3,"banos":2,"supTotal":"1.005 m²","portadaId":"1mAqR6BRMjkc9IY2iwPzctRIx4z82ixdJ","recorte":false,"actualizado":"2026-10-09T16:55:57.508Z"},{"slug":"casa-venta-335c33","enlace":"https://fichaprop.github.io/335c33/","titulo":"Casa en Venta","tipo":"Casa","operacion":"Venta","moneda":"USD","precio":320000,"barrio":"","zona":"","ambientes":4,"dormitorios":4,"banos":3,"supTotal":"900 m²","portadaId":"1U-3qS_7jrSp1SBlWQr5BDNrhrqGula5J","recorte":false,"actualizado":"2026-10-09T16:52:14.998Z"},{"slug":"casa-venta-ezeiza-gba-sur-argentina-d37c5a","enlace":"https://fichaprop.github.io/d37c5a/","titulo":"Casa en Venta en Ezeiza, GBA Sur, Argentina, ","tipo":"Casa","operacion":"Venta","moneda":"USD","precio":460000,"barrio":"Ezeiza, GBA Sur, Argentina, ","zona":"Ezeiza, GBA Sur, Argentina, , Solar del Bosque","ambientes":5,"dormitorios":2,"banos":4,"supTotal":"800 m²","portadaId":"1JwD3m5LiQ1O2Pej59l2GucCJfiyJHr3g","recorte":false,"actualizado":"2026-10-09T16:44:40.514Z"},{"slug":"casa-venta-ezeiza-gba-sur-argentina-1e4fb3","enlace":"https://fichaprop.github.io/1e4fb3/","titulo":"Casa en Venta en Ezeiza, GBA Sur, Argentina, ","tipo":"Casa","operacion":"Venta","moneda":"USD","precio":465000,"barrio":"Ezeiza, GBA Sur, Argentina, ","zona":"Ezeiza, GBA Sur, Argentina, , Canning","ambientes":4,"dormitorios":3,"banos":3,"supTotal":"798 m²","portadaId":"1L7aI7jMIac3qRVvgCs8NjuOSZymMOscK","recorte":true,"actualizado":"2026-10-09T15:52:47.157Z"},{"slug":"casa-canning-ezeiza-gba-sur-argentina-4e1d6e","enlace":"https://fichaprop.github.io/4e1d6e/","titulo":"Casa en Canning, Ezeiza, GBA Sur, Argentina","tipo":"Casa","operacion":"","moneda":"USD","precio":470000,"barrio":"Canning, Ezeiza, GBA Sur, Argentina","zona":"Canning, Ezeiza, GBA Sur, Argentina, La Providencia Resort &amp; Country Club","ambientes":5,"dormitorios":4,"banos":4,"supTotal":"889 m²","portadaId":"1ejOh9BwlUOfsRILwc_YPOcHHAx9kVa91","recorte":true,"actualizado":"2026-10-09T15:48:40.798Z"},{"slug":"canning-ezeiza-gba-sur-argentina-f60ab0","enlace":"https://fichaprop.github.io/f60ab0/","titulo":"Imponente Propiedad en La Providencia, Gba Sur","tipo":"","operacion":"","moneda":"USD","precio":725000,"barrio":"Canning, Ezeiza, GBA Sur, Argentina","zona":"Canning, Ezeiza, GBA Sur, Argentina, La Providencia Resort &amp; Country Club","ambientes":5,"dormitorios":4,"banos":4,"supTotal":"994 m²","portadaId":"1XKqH1C6EcM_z4k_iKfDJ-PCIaZNntCCH","recorte":true,"actualizado":"2026-10-09T15:07:03.046Z"},{"slug":"casa-venta-ezeiza-gba-sur-argentina-164f48","enlace":"https://fichaprop.github.io/164f48/","titulo":"Casa en Venta en Ezeiza, GBA Sur, Argentina, ","tipo":"Casa","operacion":"Venta","moneda":"USD","precio":165000,"barrio":"Ezeiza, GBA Sur, Argentina, ","zona":"Ezeiza, GBA Sur, Argentina, , Canning","ambientes":4,"dormitorios":3,"banos":2,"supTotal":"630 m²","portadaId":"1oUmyBr97uCddR3K9FnFwrOKYrbxKoKUI","recorte":true,"actualizado":"2026-10-09T15:05:10.076Z"},{"slug":"propiedad-ccbdbb","enlace":"https://fichaprop.github.io/ccbdbb/","titulo":"Ruta 58 Km 6.2","tipo":"","operacion":"","moneda":"","precio":"","barrio":"","zona":"","ambientes":"","dormitorios":"","banos":"","supTotal":"","portadaId":"1uTWRUFgutnva-u-3ra7aaEjH3hTN0wem","recorte":true,"actualizado":"2026-10-09T14:16:50.895Z"},{"slug":"casa-venta-echeverria-del-lago-12a1b7","enlace":"https://fichaprop.github.io/12a1b7/","titulo":"Casa en Venta en Echeverria Del Lago","tipo":"Casa","operacion":"Venta","moneda":"USD","precio":280000,"barrio":"Echeverria Del Lago","zona":"Echeverria Del Lago, Countries/B.Cerrado (E. Echeverría), Esteban Echeverria, G.B.A. Zona Sur","ambientes":6,"dormitorios":5,"banos":"","supTotal":"348 m²","portadaId":"1TBEUncD0n4EgDANGl8TFpVBFFfpnKatq","recorte":false,"actualizado":"2026-10-09T14:07:12.093Z"}]};
+const L = D.fichas || [];
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const miles = n => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+const sinAcento = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+const $ = id => document.getElementById(id);
+
+function opciones(sel, campo) {
+  [...new Set(L.map(f => f[campo]).filter(Boolean))].sort((a, b) => String(a).localeCompare(String(b)))
+    .forEach(v => { const o = document.createElement('option'); o.value = v; o.textContent = v; $(sel).appendChild(o); });
+}
+opciones('op', 'operacion'); opciones('tipo', 'tipo'); opciones('barrio', 'barrio');
+
+function render() {
+  const q = sinAcento($('q').value).trim();
+  const op = $('op').value, tipo = $('tipo').value, barrio = $('barrio').value, dorm = Number($('dorm').value);
+  let r = L.filter(f =>
+    (!op || f.operacion === op) && (!tipo || f.tipo === tipo) && (!barrio || f.barrio === barrio) &&
+    (!dorm || Number(f.dormitorios) >= dorm) &&
+    (!q || sinAcento([f.titulo, f.barrio, f.zona, f.tipo, f.operacion].join(' ')).includes(q)));
+  const o = $('orden').value;
+  if (o !== 'rec') r = r.slice().sort((a, b) => ((Number(a.precio) || 9e15) - (Number(b.precio) || 9e15)) * (o === 'pa' ? 1 : -1));
+
+  $('total').textContent = r.length + (r.length === 1 ? ' propiedad' : ' propiedades');
+  $('grilla').innerHTML = r.length ? r.map(f => `
+    <a class="item" href="${D.urlBase}?f=${encodeURIComponent(f.slug)}">
+      <div class="thumb${f.recorte ? ' recorte' : ''}">${f.portadaId ? `<img src="https://drive.google.com/thumbnail?id=${f.portadaId}&sz=w640" loading="lazy" alt="">` : ''}</div>
+      <div class="cuerpo">
+        <span class="tag" style="align-self:flex-start">${esc([f.tipo, f.operacion].filter(Boolean).join(' · ') || 'Propiedad')}</span>
+        <div class="t">${esc(f.titulo)}</div>
+        <div class="mini">${esc(f.zona || f.barrio)}</div>
+        <div class="p">${f.precio ? (f.moneda === 'USD' ? 'USD ' : '$ ') + miles(f.precio) : 'Consultar'}</div>
+        <div class="mini">${[f.supTotal, f.ambientes && f.ambientes + ' amb.', f.dormitorios && f.dormitorios + ' dorm.', f.banos && f.banos + ' baños'].filter(Boolean).map(esc).join(' · ')}</div>
+      </div>
+    </a>`).join('') : '<div class="vacio">No hay propiedades con esos filtros.</div>';
+}
+['q', 'op', 'tipo', 'barrio', 'dorm', 'orden'].forEach(id => $(id).addEventListener('input', render));
+render();
+</script>
+</body>
+</html>
