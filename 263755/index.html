@@ -72,9 +72,6 @@
     .planos { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
     .planos img { width: 100%; border-radius: 8px; border: 1px solid var(--line); cursor: zoom-in; }
 
-    .barra { position: sticky; bottom: 0; background: rgba(245,243,239,.95); backdrop-filter: blur(6px); border-top: 1px solid var(--line); padding: 10px 0; margin-top: 10px; }
-    .barra .wrap { display: flex; gap: 8px; }
-    .barra .btn { flex: 1; }
     .pie { text-align: center; color: var(--sub); font-size: .78rem; padding: 18px 0 8px; }
 
     .lb { position: fixed; inset: 0; background: rgba(0,0,0,.94); display: none; align-items: center; justify-content: center; z-index: 10; }
@@ -96,13 +93,12 @@
   </div>
 
 <script>
-const D = {"ficha":{"slug":"casa-venta-saint-thomas-norte-263755","titulo":"Casa en venta en Saint Thomas Norte, Canning","tipo":"Casa","operacion":"Venta","precio":{"moneda":"USD","monto":380000},"expensas":{"moneda":"ARS","monto":900000},"ubicacion":{"barrio":"Saint Thomas Norte","zona":"Canning, Esteban Echeverría","lat":null,"lng":null},"descripcion":"CASA 7 AMBIENTES EN VENTA EN SAINT THOMAS NORTE - OPORTUNIDAD UNICA\n\nCasa ubicada en lote interno de 833m2 con vista al golf - Distribuida en 3 plantas.\n\nPlanta baja:\n- Hall de ingreso distribuidor\n- Amplio living comedor formal con pisos de porcelanato pulido.\n- Doble circulación\n- Cocina con comedor diario\n- Lavadero independiente\n-Ascensor\n- baño completo\n-Escritorio en planta baja\n-Toilette de recepción.\n\n-Planta alta:\n-Habitación en suite con baño y vestidor + placard empotrado y doble bacha con box de ducha y salida a balcón.\n-2do dormitorio con placard empotrado y vista al frente, con salida a balcón\n-3er dormitorio con placard empotrado\n-Baño completo con hidromasaje\n\nTercer piso:\n-Amplio playroom o sala de cine con oficina o cuarto de guardado.\n\nExterior:\n-Parrilla techada\n-Galeria semi cubierta\n-Piscina de 8,5 x 4 con hidromasaje\n-Riego automatico\n-Climatizador de pileta\n\nGeneralidades:\n-Aires acondicionados en todos los ambientes\n-Pisos de porcelanato pulido y flotante en planta alta\n-Calefacción por radiadores\n-Ascensor","detalles":[["Sup. Total","833 m²"],["Sup. Cubierta","250 m²"],["Tipo","Casa"],["Ambientes","7"],["Dormitorios","4"],["Baños","3"],["Toilettes","1"],["Cocheras","2"],["Plantas","3"],["Antigüedad","20 años"]],"servicios":["Gas natural","Agua corriente","Conexión para lavarropas","Caldera"],"comodidades":["Vista al golf","Piscina","Hidromasaje","Parrilla","Riego automático","Climatizador de pileta","Aire acondicionado","Calefacción por radiadores","Ascensor","Vestidor","Balcón","Playroom","Oficina","Jardín","Seguridad"],"fotos":[{"id":"1fOQzw56-eoHXE_46LwTuZ3bXlRadBch-"},{"id":"1-F4pWXAKioHeCpFhlUutw-mozJW2BFCQ"},{"id":"1QwsUqMkoNo5MHUy5otKHSw_0jOSjxWc-"},{"id":"1nYyGlrtN2W2iZbnolfGcUfs9EiC30DRk"},{"id":"16N9WyoFeg7xPHv6472W7UM6EPzXsk6iW"}],"planos":[],"actualizado":"2026-10-10T13:32:24.368Z"},"urlFicha":"https://fichaprop.github.io/263755/","urlIndice":"https://fichaprop.github.io/","mostrarIndice":true,"avisoLegal":"Toda la información suministrada en forma de imágenes y/o escrita carece de valor contractual y deberá ser corroborada por el interesado."};
+const D = {"ficha":{"slug":"casa-venta-saint-thomas-norte-263755","titulo":"Casa en venta en Saint Thomas Norte, Canning","tipo":"Casa","operacion":"Venta","precio":{"moneda":"USD","monto":380000},"expensas":{"moneda":"ARS","monto":900000},"ubicacion":{"barrio":"Saint Thomas Norte","zona":"Canning, Esteban Echeverría","lat":null,"lng":null},"descripcion":"CASA 7 AMBIENTES EN VENTA EN SAINT THOMAS NORTE - OPORTUNIDAD UNICA\n\nCasa ubicada en lote interno de 833m2 con vista al golf - Distribuida en 3 plantas.\n\nPlanta baja:\n- Hall de ingreso distribuidor\n- Amplio living comedor formal con pisos de porcelanato pulido.\n- Doble circulación\n- Cocina con comedor diario\n- Lavadero independiente\n-Ascensor\n- baño completo\n-Escritorio en planta baja\n-Toilette de recepción.\n\n-Planta alta:\n-Habitación en suite con baño y vestidor + placard empotrado y doble bacha con box de ducha y salida a balcón.\n-2do dormitorio con placard empotrado y vista al frente, con salida a balcón\n-3er dormitorio con placard empotrado\n-Baño completo con hidromasaje\n\nTercer piso:\n-Amplio playroom o sala de cine con oficina o cuarto de guardado.\n\nExterior:\n-Parrilla techada\n-Galeria semi cubierta\n-Piscina de 8,5 x 4 con hidromasaje\n-Riego automatico\n-Climatizador de pileta\n\nGeneralidades:\n-Aires acondicionados en todos los ambientes\n-Pisos de porcelanato pulido y flotante en planta alta\n-Calefacción por radiadores\n-Ascensor","detalles":[["Sup. Total","833 m²"],["Sup. Cubierta","250 m²"],["Tipo","Casa"],["Ambientes","7"],["Dormitorios","4"],["Baños","3"],["Toilettes","1"],["Cocheras","2"],["Plantas","3"],["Antigüedad","20 años"]],"servicios":["Gas natural","Agua corriente","Cloacas","Fibra óptica"],"comodidades":["Vista al golf","Piscina","Hidromasaje","Parrilla","Riego automático","Climatizador de pileta","Aire acondicionado","Calefacción por radiadores","Ascensor","Vestidor","Balcón","Playroom","Oficina","Jardín","Seguridad"],"fotos":[{"id":"1fOQzw56-eoHXE_46LwTuZ3bXlRadBch-"},{"id":"1-F4pWXAKioHeCpFhlUutw-mozJW2BFCQ"},{"id":"1QwsUqMkoNo5MHUy5otKHSw_0jOSjxWc-"},{"id":"1nYyGlrtN2W2iZbnolfGcUfs9EiC30DRk"},{"id":"16N9WyoFeg7xPHv6472W7UM6EPzXsk6iW"}],"planos":[],"actualizado":"2026-10-10T14:35:17.854Z"},"avisoLegal":"Toda la información suministrada en forma de imágenes y/o escrita carece de valor contractual y deberá ser corroborada por el interesado."};
 const F = D.ficha;
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const miles = n => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 const plata = p => p && p.monto ? (p.moneda === 'USD' ? 'USD ' : '$ ') + miles(p.monto) : 'Consultar';
 const img = (id, w) => 'https://drive.google.com/thumbnail?id=' + id + '&sz=w' + (w || 1600);
-const urlFicha = D.urlFicha;
 const detalle = re => { const d = (F.detalles || []).find(x => re.test(x[0])); return d ? d[1] : ''; };
 
 function render() {
@@ -155,10 +151,7 @@ function render() {
       ${seccion('Ubicación', mapa)}
       ${seccion('Planos', (F.planos || []).length ? `<div class="planos">${F.planos.map(id => `<a href="${img(id, 2400)}" target="_blank"><img src="${img(id, 600)}" alt="Plano"></a>`).join('')}</div>` : '')}
     </div>
-    <div class="barra"><div class="wrap">
-      <button class="btn" id="compartir">Compartir</button>
-      ${D.mostrarIndice ? `<a class="btn sec" href="${D.urlIndice}">Más propiedades</a>` : ''}
-    </div></div>`;
+    <div style="height:24px"></div>`;
 
   // Galería
   const track = document.getElementById('track');
@@ -182,12 +175,6 @@ function render() {
       mas.onclick = () => { const c = desc.classList.toggle('corta'); mas.textContent = c ? 'Leer más' : 'Leer menos'; };
     } else desc.classList.remove('corta');
   }
-
-  // Compartir
-  document.getElementById('compartir').onclick = async () => {
-    try { if (navigator.share) { await navigator.share({ title: F.titulo, url: urlFicha }); return; } } catch (e) { if (e.name === 'AbortError') return; }
-    window.open('https://wa.me/?text=' + encodeURIComponent(F.titulo + ' ' + urlFicha), '_blank');
-  };
 }
 
 // Visor a pantalla completa
